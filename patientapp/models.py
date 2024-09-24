@@ -24,7 +24,7 @@ class Patient(models.Model):         #create a new model from scratch
         return f"{self.full_name}" #string representation for the doctor
 class Notification(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.SET_NULL, null=True, blank=True) #one doctor can have many notifications
-    appointment = models.ForeignKey("base.Appointment", on_delete=models.CASCADE, null=True, blank=True, related_name="doctor_appointment_notification") #one appointment can have many notifications
+    appointment = models.ForeignKey("mainapp.Appointment", on_delete=models.CASCADE, null=True, blank=True, related_name="doctor_appointment_notification") #one appointment can have many notifications
     type = models.CharField(max_length=100, choices=NOTIFICATION_TYPE)
     seen = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
