@@ -9,7 +9,7 @@ NOTIFICATION_TYPE = (
 class Patient(models.Model):         #create a new model from scratch
     user = models.OneToOneField(userauth_models.User, on_delete=models.CASCADE)  #when we delete this user , we delete doctor, there should be only one doctor that has one user model
     image = models.FileField(upload_to='images', blank=True, null=True)
-    full_name = models.CharField(max_length=100 blank=True, null=True)
+    full_name = models.CharField(max_length=100, blank=True, null=True)
                 #i add blank=True, null=True just for the sake of production environment where i might need to automatically populate the doctor via a csv to prevent errors
                 #in case the full name is not available
                 #if i dont want to do that i can just remove the blank=True, null=True

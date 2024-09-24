@@ -28,7 +28,7 @@ class ServiceAdmin(ImportExportModelAdmin):
     filter_horizontal = ['available_doctors']
 
 class AppointmentAdmin(admin.ModelAdmin):
-    list_display = ['patient', 'doctor', 'appointment_date', 'status']
+    list_display = ['patient', 'doctor', 'appointment_date', 'appointment_status']
     search_fields = ['patient__username', 'doctor__user__username']
     inlines = [MedicalRecordInline, LabTestInline, PrescriptionInline, BillingInline]
 
