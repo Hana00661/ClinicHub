@@ -15,11 +15,11 @@ class User(AbstractUser):       # override default user model
     REQUIRED_FIELDS = ['username']
 
     def __str__(self):
-        return self.username
+        return self.username    #string representation of the object
     
-    def save(self, *args, **kwargs):
-        email_username, _ = self.email.split("@")
-        if self.username == "" or self.username == None:
+    def save(self, *args, **kwargs):        #override the default save method to Extracting Username from Email , Conditional Username Assignment and Calling the Inherited save()
+        email_username, _ = self.email.split("@")       #split the email address into username and domain
+        if self.username == "" or self.username == None: #if username is empty, set it to the email username that means the user dont give us a usre name, we will use the email username as the username
             self.username = email_username
         
-        super(User, self).save(*args, **kwargs)
+        super(User, self).save(*args, **kwargs)    #self.save() did not work with me when i had to override the default save method, so i save it as django way
