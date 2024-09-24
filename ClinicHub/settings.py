@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin', #add it hear to override the default admin
+    'jazzmin', #jazzmin is a populare django admin them, i added it hear to override the default admin
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -144,7 +144,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # AUTH_USER_MODEL = 'userauthapp.User'
 
-MESSAGE_TAGS = {
+MESSAGE_TAGS = {  # for bootstrap 5 to understand the messages from django
     messages.ERROR: 'alert-danger',
 }
 
@@ -158,7 +158,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-JAZZMIN_SETTINGS = {
+JAZZMIN_SETTINGS = {       #take a look for more info in the jazzmin website https://django-jazzmin.readthedocs.io/configuration/
     'site_brand': "ClinicHub",
     'copyright':  "All Right Reserved 2024",
     "welcome_sign": "Welcome to ClinicHub, Login Now.",
@@ -175,7 +175,7 @@ JAZZMIN_SETTINGS = {
     "show_ui_builder": True
 }
 
-JAZZMIN_UI_TWEAKS = {
+JAZZMIN_UI_TWEAKS = {           # them them that i take from the jazzmin admin theme
     "navbar_small_text": False,
     "footer_small_text": False,
     "body_small_text": True,
