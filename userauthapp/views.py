@@ -21,7 +21,7 @@ def register_view(request):
             password1 = form.cleaned_data.get("password1")
             user_type = form.cleaned_data.get("user_type")
 
-            user = authenticate(request, email=email, password=password1)
+            user = authenticate(request, email=email, password=password1)       #immediate login after registration
             print("user ========= ", user)
 
             if user is not None:
@@ -33,7 +33,7 @@ def register_view(request):
                     patient_models.Patient.objects.create(user=user, full_name=full_name, email=email)
 
                 messages.success(request, "Account created successfully")
-                return redirect("/")
+                return redirect("/")        #redirect user to home page
 
             else:
                 messages.error(request, "Authenticated failed, please try again!")

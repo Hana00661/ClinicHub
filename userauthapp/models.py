@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-USER_TYPE = (
+USER_TYPE = (       #choices if the user is a doctor or patient
     ("Doctor", "Doctor"),
     ("Patient", "Patient"),
 )
