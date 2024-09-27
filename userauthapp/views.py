@@ -52,14 +52,14 @@ def login_view(request):
         messages.success(request, "You are already logged in")
         return redirect("/")
     
-    if request.method == "POST":
+    if request.method == "POST":        #request.POST will grab whatever that was sent in the POST and it will save it in the form variable
         form = userauths_forms.LoginForm(request.POST or None)
         if form.is_valid():
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
 
             try:
-                user_instance = userauths_models.User.objects.get(email=email, is_active=True)
+                user_instance = userauths_models.User.objects.get(email=email, is_active=True)      #is_active is used to filter only active user that is not banned
                 user_authenticate = authenticate(request, email=email, password=password)
 
                 if user_instance is not None:
@@ -70,11 +70,11 @@ def login_view(request):
                     next_url = request.GET.get("next", '/')
                     return redirect(next_url)
                 else:
-                    messages.error(request, "Username or password does not exist!")
+                    messages.error(request, "User Name Or Password Does Not Exist!")
             except:
                 messages.error(request, "User does not exist!")
     else:
-        form = userauths_forms.LoginForm()
+        form = userauths_forms.LoginForm()  #
     
     context = {
         "form":form
@@ -83,5 +83,5 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    messages.success(request, "Logout successful")
+    messages.success(request, "Logout Successful")
     return redirect("userauths:sign-in")
