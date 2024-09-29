@@ -17,14 +17,14 @@ from doctorapp import models as doctor_models
 from patientapp import models as patient_models
 
 def index(request):
-    services = base_models.Service.objects.all()
-    context = {
+    services = base_models.Service.objects.all()        #get all services from the database
+    context = {         #pass services to dictionary to be able to access it from the template
         "services": services
     }
     return render(request, "mainapp/index.html", context)
 
 def service_detail(request, service_id):
-    service = base_models.Service.objects.get(id=service_id)
+    service = base_models.Service.objects.get(id=service_id)    #acquire service from the database, use get because it get just one item
 
     context = {
         "service": service
