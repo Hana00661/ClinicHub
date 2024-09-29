@@ -10,7 +10,11 @@
             <p class="fs-4 mt-4">{{service.description}}</p>
         </div>
         <div class="col-12 col-lg-5">
-            <img class="img-fluid mt-4" style="width: 100%; height: 350px; object-fit: cover; border-radius: 10px" src="{{service.image.url}}" alt="" />
+            {% if service.image %}
+                <img class="img-fluid mt-4" style="width: 100%; height: 350px; object-fit: cover; border-radius: 10px" src="{{ service.image.url }}" alt="Service Image" />
+            {% else %}
+                <img class="img-fluid mt-4" style="width: 100%; height: 350px; object-fit: cover; border-radius: 10px" src="/static/images/default-image.jpg" alt="Default Image" />
+            {% endif %}
         </div>
     </div>
 </section>
@@ -42,7 +46,7 @@
                         </div>
 
                         <div>
-                            <a href="{% url 'base:book_appointment' service.id d.id %}" class="btn btn-primary me-4">Book Now <i class="fas fa-arrow-right ms-2"></i></a>
+                            <a href="{% url 'mainapp:book_appointment' service.id d.id %}" class="btn btn-primary me-4">Book Now <i class="fas fa-arrow-right ms-2"></i></a>
                         </div>
                     </div>
                 </div>

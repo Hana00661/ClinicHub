@@ -1,7 +1,7 @@
 from django.urls import path
 from mainapp import views
 
-app_name = "mainapp"
+app_name = "mainapp"        # This sets the namespace
 
 urlpatterns = [
     path("", views.index, name="index"),
