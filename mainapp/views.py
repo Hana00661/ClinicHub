@@ -7,9 +7,8 @@ from django.http import JsonResponse
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from datetime import datetime
+from django.contrib import messages
 import requests
-import stripe
-
 from mainapp import models as base_models
 from doctorapp import models as doctor_models
 from patientapp import models as patient_models
@@ -70,3 +69,25 @@ def book_appointment(request, service_id, doctor_id):
         "patient": patient,
     }
     return render(request, "mainapp/book_appointment.html", context)
+
+@login_required
+def checkout(request):
+    checkout_appointment = base_models.Appointment.objects.get(appointment_id=request.GET.get("appointment_id"))
+    
+    booking_info = (
+        f"Appointment ID: {checkout_appointment.appointment.id}\n"
+        f"Patient Name: {checkout_appointment.appointment.patient.full_name}\n"
+        f"Doctor Name: {checkout_appointment.appointment.doctor.full_name}\n"
+        f"Date: {checkout_appointment.appointment.date}\n"
+        f"Time: {checkout_appointment.appointment.time}\n"
+        f"Service: {checkout_appointment.appointment.service.name}\n"
+        f"Total Amount: {checkout_appointment.total_amount}\n"
+    )
+    
+    messages.success(request, "Your appointment has been booked successfully!")
+    
+    context = {
+        "booking_info": booking_info
+    }
+    
+    return render(request, "mainapp/checkout.html", context)
