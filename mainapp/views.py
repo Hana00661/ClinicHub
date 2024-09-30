@@ -35,7 +35,7 @@ def book_appointment(request, service_id, doctor_id):
     doctor = doctor_models.Doctor.objects.get(id=doctor_id)
     patient = patient_models.Patient.objects.get(user=request.user)
 
-    if request.method == "POST":
+    if request.method == "POST":        #directly getting the information from the input
         full_name = request.POST.get("full_name")
         email = request.POST.get("email")
         mobile = request.POST.get("mobile")

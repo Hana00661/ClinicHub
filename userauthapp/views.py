@@ -11,7 +11,7 @@ def register_view(request):
         messages.success(request, "You are already logged in!!")
         return redirect("/")
     
-    if request.method == "POST":
+    if request.method == "POST":        #getting the information from the form directly
         form = userauths_forms.UserRegisterForm(request.POST or None)       #request.POST will grab whatever that was sent in the POST and it will save it in the form variable and save the new user to the database
 
         if form.is_valid():
