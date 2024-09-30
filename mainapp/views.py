@@ -1,7 +1,5 @@
-from django.shortcuts import render
-
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required       #if user is not logged in he will not be able to access this view
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
