@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
+# from environs import Env
+
+# env = Env()            #initializing environment variables
+# env.read_env()         #reading the environment variables
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin', #jazzmin is a populare django admin them, i added it hear to override the default admin
+    'jazzmin', #jazzmin is a populare django admin them, i added it here to override the default admin
     
     'django.contrib.admin',
     'django.contrib.auth',
