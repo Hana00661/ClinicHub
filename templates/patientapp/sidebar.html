@@ -17,23 +17,19 @@
                 </div>
                 <ul class="list-unstyled ms-n2 mb-4">
                     <li class="nav-item">
-                        <a class="dropdown-item nav-link" href="{% url 'patient:dashboard' %}"><i class="bi bi-grid-fill"></i> Dashboard</a>
+                        <a class="dropdown-item nav-link" href="{% url 'patientapp:dashboard' %}"><i class="bi bi-grid-fill"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="dropdown-item nav-link" href="{% url 'patient:appointments' %}"><i class="fas fa-calendar"></i> Appointment</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="dropdown-item nav-link" href="{% url 'patient:payments' %}"><i class="fas fa-credit-card"></i> Payments</a>
+                        <a class="dropdown-item nav-link" href="{% url 'patientapp:appointments' %}"><i class="fas fa-calendar"></i> Appointment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="dropdown-item nav-link" href="{% url 'patient:notifications' %}"><i class="fas fa-bell"></i> Notification</a>
+                        <a class="dropdown-item nav-link" href="{% url 'patientapp:notifications' %}"><i class="fas fa-bell"></i> Notification</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'patient:profile' %}"> <i class="fas fa-edit"></i> Edit Profile </a>
+                        <a class="nav-link" href="{% url 'patientapp:profile' %}"> <i class="fas fa-edit"></i> Edit Profile </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'userauths:sign-out' %}"> <i class="fas fa-sign-out-alt"></i> Sign Out </a>
+                        <a class="nav-link" href="{% url 'userauthapp:sign-out' %}"> <i class="fas fa-sign-out-alt"></i> Sign Out </a>
                     </li>
                 </ul>
             </div>

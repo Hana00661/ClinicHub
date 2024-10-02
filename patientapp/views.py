@@ -16,10 +16,9 @@ def dashboard(request):
     context = {
         'appointments': appointments,
         'notifications': notifications,
-        'total_spent': total_spent,
-    }
+        }
 
-    return render(request, "patient/dashboard.html", context)
+    return render(request, "patientapp/dashboard.html", context)
 
 
 
@@ -32,7 +31,7 @@ def appointments(request):
         "appointments": appointments,
     }
 
-    return render(request, "patient/appointments.html", context)
+    return render(request, "patientapp/appointments.html", context)
 
 
 @login_required
@@ -51,7 +50,7 @@ def appointment_detail(request, appointment_id):
         "prescriptions": prescriptions,
     }
 
-    return render(request, "patient/appointment_detail.html", context)
+    return render(request, "patientapp/appointment_detail.html", context)
 
 
 
@@ -65,7 +64,7 @@ def cancel_appointment(request, appointment_id):
     appointment.save()
 
     messages.success(request, "Appointment Cancelled Successfully")
-    return redirect("patient:appointment_detail", appointment.appointment_id)
+    return redirect("patientapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -77,7 +76,7 @@ def activate_appointment(request, appointment_id):
     appointment.save()
 
     messages.success(request, "Appointment Re-Scheduled Successfully")
-    return redirect("patient:appointment_detail", appointment.appointment_id)
+    return redirect("patientapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -89,7 +88,7 @@ def complete_appointment(request, appointment_id):
     appointment.save()
 
     messages.success(request, "Appointment Completed Successfully")
-    return redirect("patient:appointment_detail", appointment.appointment_id)
+    return redirect("patientapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -101,7 +100,7 @@ def notifications(request):
         "notifications": notifications
     }
 
-    return render(request, "patient/notifications.html", context)
+    return render(request, "patientapp/notifications.html", context)
 
 @login_required
 def mark_noti_seen(request, id):
@@ -111,7 +110,7 @@ def mark_noti_seen(request, id):
     notification.save()
     
     messages.success(request, "Notification marked as seen")
-    return redirect("patient:notifications")
+    return redirect("patientapp:notifications")
 
 
 @login_required
@@ -140,11 +139,11 @@ def profile(request):
 
         patient.save()
         messages.success(request, "Profile updated successfully")
-        return redirect("patient:profile")
+        return redirect("patientapp:profile")
 
     context = {
         "patient": patient,
         "formatted_dob": formatted_dob,
     }
 
-    return render(request, "patient/profile.html", context)
+    return render(request, "patientapp/profile.html", context)

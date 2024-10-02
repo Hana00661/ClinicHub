@@ -16,7 +16,7 @@ def dashboard(request):
         "notifications": notifications,
     }
 
-    return render(request, "doctor/dashboard.html", context)
+    return render(request, "doctorapp/dashboard.html", context)
 
 
 @login_required
@@ -28,7 +28,7 @@ def appointments(request):
         "appointments": appointments,
     }
 
-    return render(request, "doctor/appointments.html", context)
+    return render(request, "doctorapp/appointments.html", context)
 
 
 @login_required
@@ -47,7 +47,7 @@ def appointment_detail(request, appointment_id):
         "prescriptions": prescriptions,
     }
 
-    return render(request, "doctor/appointment_detail.html", context)
+    return render(request, "doctorapp/appointment_detail.html", context)
 
 
 @login_required
@@ -59,7 +59,7 @@ def cancel_appointment(request, appointment_id):
     appointment.save()
 
     messages.success(request, "Appointment Cancelled Successfully")
-    return redirect("doctor:appointment_detail", appointment.appointment_id)
+    return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -71,7 +71,7 @@ def activate_appointment(request, appointment_id):
     appointment.save()
 
     messages.success(request, "Appointment Re-Scheduled Successfully")
-    return redirect("doctor:appointment_detail", appointment.appointment_id)
+    return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -83,7 +83,7 @@ def complete_appointment(request, appointment_id):
     appointment.save()
 
     messages.success(request, "Appointment Completed Successfully")
-    return redirect("doctor:appointment_detail", appointment.appointment_id)
+    return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -98,7 +98,7 @@ def add_medical_report(request, appointment_id):
 
     
     messages.success(request, "Medical Report Added Successfully")
-    return redirect("doctor:appointment_detail", appointment.appointment_id)
+    return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 @login_required
 def edit_medical_report(request, appointment_id, medical_report_id):
@@ -115,7 +115,7 @@ def edit_medical_report(request, appointment_id, medical_report_id):
         medical_report.save()
 
     messages.success(request, "Medical Report Updated Successfully")
-    return redirect("doctor:appointment_detail", appointment.appointment_id)
+    return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -131,7 +131,7 @@ def add_lab_test(request, appointment_id):
         base_models.LabTest.objects.create(appointment=appointment, test_name=test_name, description=description, result=result)
 
     messages.success(request, "Lab report Added Successfully")
-    return redirect("doctor:appointment_detail", appointment.appointment_id)
+    return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -151,7 +151,7 @@ def edit_lab_test(request, appointment_id, lab_test_id):
         lab_test.save()
 
     messages.success(request, "Lab Report Updated Successfully")
-    return redirect("doctor:appointment_detail", appointment.appointment_id)
+    return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -164,7 +164,7 @@ def add_prescription(request, appointment_id):
         base_models.Prescription.objects.create(medications=medications, appointment=appointment)
 
     messages.success(request, "Prescription Added Successfully")
-    return redirect("doctor:appointment_detail", appointment.appointment_id)
+    return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 
 @login_required
@@ -179,19 +179,7 @@ def edit_prescription(request, appointment_id, prescription_id):
         prescription.save()
 
     messages.success(request, "Prescription Updated Successfully")
-    return redirect("doctor:appointment_detail", appointment.appointment_id)
-
-@login_required
-def payments(request):
-    doctor = doctor_models.Doctor.objects.get(user=request.user)
-    payments = base_models.Billing.objects.filter(appointment__doctor=doctor, status="Paid")
-
-    context = {
-        "payments": payments,
-    }
-
-    return render(request, "doctor/payments.html", context)
-
+    return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 @login_required
 def notifications(request):
@@ -202,8 +190,7 @@ def notifications(request):
         "notifications": notifications
     }
 
-    return render(request, "doctor/notifications.html", context)
-
+    return render(request, "doctorapp/notifications.html", context)
 
 
 @login_required
@@ -214,7 +201,7 @@ def mark_noti_seen(request, id):
     notification.save()
     
     messages.success(request, "Notification marked as seen")
-    return redirect("doctor:notifications")
+    return redirect("doctorapp:notifications")
 
 
 @login_required
@@ -247,11 +234,11 @@ def profile(request):
 
         doctor.save()
         messages.success(request, "Profile updated successfully")
-        return redirect("doctor:profile")
+        return redirect("doctorapp:profile")
 
     context = {
         "doctor": doctor,
         "formatted_next_available_appointment_date": formatted_next_available_appointment_date,
     }
 
-    return render(request, "doctor/profile.html", context)
+    return render(request, "doctorapp/profile.html", context)

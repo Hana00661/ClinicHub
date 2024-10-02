@@ -141,8 +141,8 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'userauthapp:sign-in'
+LOGIN_REDIRECT_URL = 'userauthapp:sign-in'
 
 LOGOUT_REDIRECT_URL = '/'
 

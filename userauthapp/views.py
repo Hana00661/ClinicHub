@@ -44,7 +44,7 @@ def register_view(request):
     context = {
         "form":form
     }
-    return render(request, "userauths/sign-up.html", context)
+    return render(request, "userauthapp/sign-up.html", context)
 
 
 def login_view(request):
@@ -79,9 +79,9 @@ def login_view(request):
     context = {
         "form":form
     }
-    return render(request, "userauths/sign-in.html", context)
+    return render(request, "userauthapp/sign-in.html", context)
 
 def logout_view(request):
     logout(request)
     messages.success(request, "Logout Successful")
-    return redirect("userauths:sign-in")
+    return redirect("userauthapp:sign-in")

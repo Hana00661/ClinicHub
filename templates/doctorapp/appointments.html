@@ -3,7 +3,7 @@
 <section class="pt-5 pb-5">
     <div class="container">
         <div class="row mt-0 mt-md-4">
-            {% include 'doctor/sidebar.html' %}
+            {% include 'doctorapp/sidebar.html' %}
 
             <div class="col-lg-9 col-md-8 col-12">
                 <h4 class="mb-0 mb-4 fw-bold">Appointment</h4>
@@ -12,7 +12,7 @@
 
                     {% for a in appointments %}
                     <div class="shadow border p-3 mb-4 rounded-4">
-                        <a href="{% url 'doctor:appointment_detail' a.appointment_id %}">
+                        <a href="{% url 'doctorapp:appointment_detail' a.appointment_id %}">
                             <p><span class="fw-semibold text-dark">Appointment ID:</span> #{{a.appointment_id}}</p>
                             <p><span class="fw-semibold text-dark">Service:</span> {{a.service.name}}</p>
                             <p><span class="fw-semibold text-dark">Patient:</span> {{a.patient.full_name}}</p>

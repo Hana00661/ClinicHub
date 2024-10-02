@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("mainapp.urls")),
     path("auth/", include("userauthapp.urls")),
-    path("doctor/", include("doctorapp.urls")),
+    path("doctor/", include("doctorapp.urls", namespace="doctorapp")),
     path("patient/", include("patientapp.urls")),
 ]
 

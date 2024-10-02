@@ -2,7 +2,7 @@
 <section class="pt-5 pb-5">
     <div class="container">
         <div class="row mt-0 mt-md-4">
-            {% include 'doctor/sidebar.html' %}
+            {% include 'doctorapp/sidebar.html' %}
 
             <div class="col-lg-9 col-md-8 col-12">
                 <h4 class="mb-0 mb-4 fw-bold">Appointment Detail #12345</h4>
@@ -21,12 +21,12 @@
                                     <span class="fw-semibold text-dark">Action:</span>
 
                                     {% if appointment.status == "Scheduled" %}
-                                    <a href="{% url 'doctor:cancel_appointment' appointment.appointment_id %}" class="btn btn-outline-danger btn-sm">Cancel Appointment <i class="fas fa-trash ms-2"></i></a>
-                                    <a href="{% url 'doctor:complete_appointment' appointment.appointment_id %}" class="btn btn-outline-success btn-sm">Complete Appointment <i class="fas fa-check-circle ms-2"></i></a>
+                                    <a href="{% url 'doctorapp:cancel_appointment' appointment.appointment_id %}" class="btn btn-outline-danger btn-sm">Cancel Appointment <i class="fas fa-trash ms-2"></i></a>
+                                    <a href="{% url 'doctorapp:complete_appointment' appointment.appointment_id %}" class="btn btn-outline-success btn-sm">Complete Appointment <i class="fas fa-check-circle ms-2"></i></a>
                                     {% endif %} {% if appointment.status == "Cancelled" %}
-                                    <a href="{% url 'doctor:activate_appointment' appointment.appointment_id %}" class="btn btn-success btn-sm">Activate Appointment <i class="fas fa-check-circle ms-2"></i></a>
+                                    <a href="{% url 'doctorapp:activate_appointment' appointment.appointment_id %}" class="btn btn-success btn-sm">Activate Appointment <i class="fas fa-check-circle ms-2"></i></a>
                                     {% endif %} {% if appointment.status == "Completed" %}
-                                    <a href="{% url 'doctor:activate_appointment' appointment.appointment_id %}" class="btn btn-success btn-sm">Completed <i class="fas fa-check-circle ms-2"></i></a>
+                                    <a href="{% url 'doctorapp:activate_appointment' appointment.appointment_id %}" class="btn btn-success btn-sm">Completed <i class="fas fa-check-circle ms-2"></i></a>
                                     {% endif %}
                                 </p>
                             </a>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="collapse" id="collapseMedicalReport">
                         <div class="border p-3 mb-4 rounded-4">
-                            <form action="{% url 'doctor:add_medical_report' appointment.appointment_id %}" method="POST">
+                            <form action="{% url 'doctorapp:add_medical_report' appointment.appointment_id %}" method="POST">
                                 {% csrf_token %}
                                 <input type="text" class="form-control mb-3" name="diagnosis" placeholder="Diagnosis" />
                                 <input type="text" class="form-control mb-3" name="treatment" placeholder="Treatment" />
@@ -59,7 +59,7 @@
                                 <button class="btn btn-dark btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMedicalRecord{{m.id}}" aria-expanded="false" aria-controls="collapseMedicalRecord{{m.id}}">Edit <i class="fas fa-edit ms-2"></i></button>
                                 <div class="collapse mt-3" id="collapseMedicalRecord{{m.id}}">
                                     <div class="border p-3 rounded-4">
-                                        <form action="{% url 'doctor:edit_medical_report' appointment.appointment_id m.id %}" method="POST">
+                                        <form action="{% url 'doctorapp:edit_medical_report' appointment.appointment_id m.id %}" method="POST">
                                             {% csrf_token %}
                                             <input type="text" class="form-control mb-3" value="{{m.diagnosis}}" name="diagnosis" placeholder="Diagnosis" />
                                             <input type="text" class="form-control mb-3" value="{{m.treatment}}" name="treatment" placeholder="Treatment" />
