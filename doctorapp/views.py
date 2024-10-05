@@ -182,6 +182,17 @@ def edit_prescription(request, appointment_id, prescription_id):
     return redirect("doctorapp:appointment_detail", appointment.appointment_id)
 
 @login_required
+def payments(request):
+    doctor = doctor_models.Doctor.objects.get(user=request.user)
+    payments = base_models.Billing.objects.filter(appointment__doctor=doctor, status="Paid")
+
+    context = {
+        "payments": payments,
+    }
+
+    return render(request, "doctorapp/payments.html", context)
+
+@login_required
 def notifications(request):
     doctor = doctor_models.Doctor.objects.get(user=request.user)
     notifications = doctor_models.Notification.objects.filter(doctor=doctor, seen=False)
